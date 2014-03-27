@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<title>Roll Out</title>
+<style>
+#roller{
+
+border: 2px none #000000;
+border-radius: 100% 100% 100% 100%;
+background-color: cyan;
+width:50px;
+height:50px;
+
+}
+#unroller{
+
+border: 2px none #000000;
+border-radius: 100% 100% 100% 100%;
+background-color: seagreen;
+width:50px;
+height:50px;
+
+}
+
+</style>
+<script src="jquery-2.1.0.js"></script>
+</head>
+<body>
+<script>
+
+
+
+
+$(document).ready(function(){
+    $("#roller").hover(function(){
+	
+	var x = Math.random()*1000 +"px";
+	var v = Math.random()*1000 +"px";
+	var y = Math.random()*500 +"px";
+	var z = Math.random()*500 +"px";
+         $(this).css({
+		 transition:"all 1s",
+		 position:"absolute",
+		 right:x,
+		 top:y,
+		 bottom:z,
+		 left:v
+		 });
+		 
+		 
+   });
+       $("#unroller").hover(function(){
+	
+	var x = Math.random()*1000 +"px";
+	var v = Math.random()*1000 +"px";
+	var y = Math.random()*500 +"px";
+	var z = Math.random()*500 +"px";
+         $(this).css({
+		 transition:"all 1s",
+		 position:"absolute",
+		 right:x,
+		 top:y,
+		 bottom:z,
+		 left:v
+		 });
+		 
+		 
+   });
+});
+
+
+</script>
+
+<div id="roller">
+
+</div>
+<div id="unroller">
+
+</div>
+</body>
+
+</html>
