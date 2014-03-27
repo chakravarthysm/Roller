@@ -12,6 +12,7 @@ width:50px;
 height:50px;
 
 }
+
 #unroller{
 
 border: 2px none #000000;
@@ -20,18 +21,66 @@ background-color: seagreen;
 width:50px;
 height:50px;
 
+
 }
 
 </style>
 <script src="jquery-2.1.0.js"></script>
 </head>
 <body>
+
+
+
+<script>
+function collision_() {
+    if (arguments.length > 1) {
+        for (var x = 0; x < arguments.length; x++) {
+            for (var y = 1; y < arguments.length; y++) {
+                if (x == y) {
+                    continue;
+                }
+                if (collision(arguments[x], arguments[y])) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
+
+function collision($div1, $div2) {
+      var x1 = $div1.offset().left;
+      var y1 = $div1.offset().top;
+      var h1 = $div1.outerHeight(true);
+      var w1 = $div1.outerWidth(true);
+      var b1 = y1 + h1;
+      var r1 = x1 + w1;
+      var x2 = $div2.offset().left;
+      var y2 = $div2.offset().top;
+      var h2 = $div2.outerHeight(true);
+      var w2 = $div2.outerWidth(true);
+      var b2 = y2 + h2;
+      var r2 = x2 + w2;
+        
+      if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
+      return true;
+    }
+
+
+window.setInterval(function() {
+    $('#result').text(collision_($('#roller'), $('#unroller')));
+}, 200);
+
+
+</script>
 <script>
 
 
 
 
 $(document).ready(function(){
+
+
     $("#roller").hover(function(){
 	
 	var x = Math.random()*1000 +"px";
@@ -44,14 +93,18 @@ $(document).ready(function(){
 		 right:x,
 		 top:y,
 		 bottom:z,
-		 left:v
+		 left:v,
+		
+		 });
+		 
 		 });
 		 
 		 
-   });
+		 
+  
        $("#unroller").hover(function(){
 	
-	var x = Math.random()*1000 +"px";
+var x = Math.random()*1000 +"px";
 	var v = Math.random()*1000 +"px";
 	var y = Math.random()*500 +"px";
 	var z = Math.random()*500 +"px";
@@ -76,7 +129,10 @@ $(document).ready(function(){
 </div>
 <div id="unroller">
 
+
 </div>
+
+<p>Colliding? <span id="result">false</span>
 </body>
 
 </html>
